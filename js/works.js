@@ -24,20 +24,43 @@ var Work = function(input){
   this.image = input.image;
   this.text = input.text;
   this.link = input.link;
-  rawData.push(this);
+  // rawData.push(this);
 };
 
-function pageWrite(){
+Work.prototype.toHtml = function(obj){
+  var $newItem = $('li.template').clone();
+  $newItem:nth-child(1).html('<div><a href="' + obj.link + '">'+ obj.name +'</a></div>');
+  $newItem:nth-child(2).html('<div>'+ obj.date +'</div>');
+  $newItem:nth-child(3).html('<img src="' + obj.image + '">');
+  $newItem:nth-child(4).html('<div>'+ obj.text +'</div>');
+
+  $newItem.removeClass('template');
+  $('#portfolio').append($newItem);
+};
+//
+// function pageWrite(){
+//   dateSort();
+//   console.log(rawData);
+//   for (var i = rawData.length - 1 ; i >= 0; i--){
+//     var $article = $('<li class="item"></li>');
+//     $article.append('<div><a href="' + rawData[i].link + '">'+ rawData[i].name +'</a></div>');
+//     $article.append('<div>'+ rawData[i].date +'</div>');
+//     $article.append('<div>'+ rawData[i].text +'</div>');
+//     $article.append('<img src="' + rawData[i].image + '">');
+//     console.log($article);
+//     $('#portfolio').append($article);
+//   }
+// }
+//
+// pageWrite();
+
+function writeItem(){
   dateSort();
   console.log(rawData);
   for (var i = rawData.length - 1 ; i >= 0; i--){
-    var $article = $('<li class="item"></li>');
-    $article.append('<div><a href="' + rawData[i].link + '">'+ rawData[i].name +'</a></div>');
-    $article.append('<div>'+ rawData[i].date +'</div>');
-    $article.append('<div>'+ rawData[i].text +'</div>');
-    $article.append('<img src="' + rawData[i].image + '">');
-    console.log($article);
-    $('#portfolio').append($article);
+    var item = new Work(rawData[i]);
+    item.toHtml(item);
   }
-}
-pageWrite();
+};
+
+writeItem();
