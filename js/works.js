@@ -9,7 +9,6 @@ var rawData= [
 ];
 
 function dateSort(){
-  console.log('hit dateSort');
   rawData.sort(function(a,b){
     var dateA = new Date(a.date);
     var dateB = new Date(b.date);
@@ -29,7 +28,6 @@ var Work = function(input){
 
 function pageWrite(){
   dateSort();
-  console.log(rawData);
   for (var i = rawData.length - 1 ; i >= 0; i--){
     var $article = $('<li class="item"></li>');
     $article.append('<div><a href="' + rawData[i].link + '">'+ rawData[i].name +'</a></div>');
