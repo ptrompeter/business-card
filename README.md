@@ -1,2 +1,2 @@
 # code-blog
-a static blog app developed for codefellows 301 in January of 2016.
+A portfolio website developed for codefellows 301 in January of 2016.

@@ -3,7 +3,7 @@ var rawData= [
     name: 'RacTrac',
     date: '2015-12-28',
     image: 'img/ractrac.png',
-    text: "RacTrac accepts a user's geolocation, then maps that location with nearby bike racks maintained by the City of Seattle.  The app calls a City of Seattle database, the user selects the distance to the farthest rack, and the app does the math and maps the appropriate bike racks.  RacTrac is deployed on a node server on heroku.com to preserve API key security",
+    text: "RacTrac accepts a user's geolocation, then maps that location with nearby bike racks maintained by the City of Seattle.  The app calls a City of Seattle database, the user selects the distance to the farthest rack, and the app does the math and maps the appropriate bike racks.  RacTrac is deployed on a node server on heroku.com to preserve API key security.",
     link: 'http://ractrac.herokuapp.com'
   }
 ];
@@ -29,13 +29,13 @@ var Work = function(input){
 
 Work.prototype.toHtml = function(obj){
   var $newItem = $('li.template').clone();
-  $newItem:nth-child(1).html('<div><a href="' + obj.link + '">'+ obj.name +'</a></div>');
-  $newItem:nth-child(2).html('<div>'+ obj.date +'</div>');
-  $newItem:nth-child(3).html('<img src="' + obj.image + '">');
-  $newItem:nth-child(4).html('<div>'+ obj.text +'</div>');
-
+  $('.template .title').html('<a href="' + obj.link + '">'+ obj.name +'</a>');
+  $('.template .date').html(obj.date);
+  $('.template .pic').html('<img src="' + obj.image + '">');
+  $('.template .desc').text(obj.text);
   $newItem.removeClass('template');
   $('#portfolio').append($newItem);
+
 };
 //
 // function pageWrite(){
@@ -56,7 +56,6 @@ Work.prototype.toHtml = function(obj){
 
 function writeItem(){
   dateSort();
-  console.log(rawData);
   for (var i = rawData.length - 1 ; i >= 0; i--){
     var item = new Work(rawData[i]);
     item.toHtml(item);
