@@ -3,7 +3,7 @@ var rawData= [
     name: 'RacTrac',
     date: '2015-12-28',
     image: 'img/ractrac.png',
-    text: "RacTrac accepts a user's geolocation, then maps that location with nearby bike racks maintained by the City of Seattle.  The app calls a City of Seattle database, the user selects the distance to the farthest rack, and the app does the math and maps the appropriate bike racks.  RacTrac is deployed on a node server on heroku.com to preserve API key security.",
+    text: 'RacTrac accepts a user\'s geolocation, then maps that location with nearby bike racks maintained by the City of Seattle.  The app calls a City of Seattle database, the user selects the distance to the farthest rack, and the app does the math and maps the appropriate bike racks.  RacTrac is deployed on a node server on heroku.com to preserve API key security.',
     link: 'http://ractrac.herokuapp.com'
   }
 ];
@@ -62,3 +62,10 @@ function writeItem(){
 };
 
 writeItem();
+$('nav').on('click', function(e){
+  var $name = ($(e.target).data('name'));
+  if($(e.target).hasClass('tab')){
+    $('.tab-content').hide();
+    $('#'+ $name).fadeIn();
+  }
+});

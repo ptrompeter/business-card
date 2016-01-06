@@ -5,21 +5,22 @@
     <title>Patrick's e-card in website form</title>
     <script src='https://code.jquery.com/jquery-2.1.4.min.js'></script>
     <link rel="stylesheet" href="css/reset.css">
+    <link href='https://fonts.googleapis.com/css?family=Cinzel:700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <header>
-
+    <header class='primary'>
+      <h1>Patrick's badass page</h1>
     </header>
     <nav>
-      <a>Home</a>
-      <a>About Me</a>
-      <a>My Resume</a>
+      <a class='tab' data-name='projects'>Projects</a>
+      <a class='tab' data-name='about'>About Me</a>
+      <a class='tab' data-name='resume'>My Resume</a>
       <a href=https://www.linkedin.com/profile/view?id=AAMAABukiQMBLn9BMyN2NLQwan4FVHEv0GKhbao&trk=hp-identity-name>linkedIn</a>
       <a href="https://github.com/ptrompeter">gitHub</a>
     </nav>
     <main>
-      <section>
+      <section class='tab-content' id='projects'>
         Projects go here
         <ul id='portfolio'>
           <li class='template'>
@@ -29,6 +30,12 @@
             <div class='desc'></div>
           </li>
         </ul>
+      </section>
+      <section class='tab-content' id='about'>
+      Hi! I'm a software developer in Seattle Washington.  I like board games and beekeeping.
+      </section>
+      <section class='tab-content' id='resume'>
+        My resume goes here.
       </section>
     </main>
     <aside>
