@@ -1,0 +1,29 @@
+header {
+  padding: 1em;
+}
+header > h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 3em;
+  text-align: center;
+  text-shadow: 2px 2px #735600;
+  padding: 1% 0 1% 0;
+}
+
+nav a {
+  border: solid black .1em;
+  border-radius: .1em;
+  padding: .1em;
+
+}
+.pic img {
+  max-width: 100%;
+}
+
+.pic {
+  width: 45%;
+  float: left;
+}
+.desc {
+  width: 45%;
+  float: right
+}
