@@ -69,3 +69,4 @@ $('nav').on('click', function(e){
     $('#'+ $name).fadeIn();
   }
 });
+$('nav .tab:first').click();
