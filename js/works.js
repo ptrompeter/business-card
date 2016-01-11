@@ -4,7 +4,7 @@ var rawData= [
     date: '2015-12-28',
     image: 'img/ractrac.png',
     text: 'RacTrac accepts a user\'s geolocation, then maps that location with nearby bike racks maintained by the City of Seattle.  The app calls a City of Seattle database, the user selects the distance to the farthest rack, and the app does the math and maps the appropriate bike racks.  RacTrac is deployed on a node server on heroku.com to preserve API key security.',
-    link: 'http://ractrac.herokuapp.com'
+    link: 'http://ractrac.herokuapp.com',
   }
 ];
 
@@ -26,7 +26,17 @@ var Work = function(input){
   // rawData.push(this);
 };
 
-Work.prototype.toHtml = function(obj){
+Work.prototype.toHtml = function(){
+
+  var $template = $('#template').html();
+  // var $template = $('#template').attr('src').toHtml();
+  // console.log($('#template').load('js/projecttemplate.html'));
+  // console.log(typeof($('#template').attr('src')));
+  // console.log('here\'s the template html:');
+  console.log($template);
+  var compiledTemplate = Handlebars.compile($template);
+  return compiledTemplate(this);
+
   var $newItem = $('li.template').clone();
   $('.template .title').html('<a href="' + obj.link + '">'+ obj.name +'</a>');
   $('.template .date').html(obj.date);
@@ -57,16 +67,18 @@ function writeItem(){
   dateSort();
   for (var i = rawData.length - 1 ; i >= 0; i--){
     var item = new Work(rawData[i]);
-    item.toHtml(item);
+    $('#portfolio').append(item.toHtml());
   }
 };
 
-writeItem();
-$('nav').on('click', function(e){
-  var $name = ($(e.target).data('name'));
-  if($(e.target).hasClass('tab')){
-    $('.tab-content').hide();
-    $('#'+ $name).fadeIn();
-  }
+$('document').ready(function(){
+  writeItem();
+  $('nav').on('click', function(e){
+    var $name = ($(e.target).data('name'));
+    if($(e.target).hasClass('tab')){
+      $('.tab-content').hide();
+      $('#'+ $name).fadeIn();
+    }
+  });
+  $('nav .tab:first').click();
 });
-$('nav .tab:first').click();

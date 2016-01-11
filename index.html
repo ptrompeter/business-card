@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Patrick's e-card in website form</title>
     <script src='https://code.jquery.com/jquery-2.1.4.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
     <link rel="stylesheet" href="css/reset.css">
     <link href='https://fonts.googleapis.com/css?family=Cinzel:700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/style.css">
@@ -19,19 +20,13 @@
       <a class='tab' data-name='projects'>Projects</a>
       <a class='tab' data-name='about'>About Me</a>
       <a class='tab' data-name='resume'>My Resume</a>
-      <a href=https://www.linkedin.com/profile/view?id=AAMAABukiQMBLn9BMyN2NLQwan4FVHEv0GKhbao&trk=hp-identity-name>linkedIn</a>
+      <a href='https://www.linkedin.com/profile/view?id=AAMAABukiQMBLn9BMyN2NLQwan4FVHEv0GKhbao&trk=hp-identity-name'>linkedIn</a>
       <a href="https://github.com/ptrompeter">gitHub</a>
     </nav>
   </header>
     <main>
       <section class='tab-content' id='projects'>
         <ul id='portfolio'>
-          <li class='template'>
-            <div class='title'></div>
-            <div class='date'></div>
-            <div class='pic'></div>
-            <div class='desc'></div>
-          </li>
         </ul>
       </section>
       <section class='tab-content' id='about'>
@@ -43,6 +38,15 @@
     </main>
     <aside>
     </aside>
-    <script src="js/works.js"></script>
+    <script id='template' type='text/template'><li class='project'>
+      <a href={{link}}>
+        <div class='title'>{{name}}</div>
+        <div class='date'>{{date}}</div>
+        <div class='pic'><img src='{{{image}}}'/></div>
+        <div class='desc'>{{text}}</div>
+      </a>
+    </li>
+  </script>
+    <script src='js/works.js'></script>
   </body>
 </html>
