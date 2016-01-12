@@ -29,11 +29,6 @@ var Work = function(input){
 Work.prototype.toHtml = function(){
 
   var $template = $('#template').html();
-  // var $template = $('#template').attr('src').toHtml();
-  // console.log($('#template').load('js/projecttemplate.html'));
-  // console.log(typeof($('#template').attr('src')));
-  // console.log('here\'s the template html:');
-  console.log($template);
   var compiledTemplate = Handlebars.compile($template);
   return compiledTemplate(this);
 
@@ -46,22 +41,6 @@ Work.prototype.toHtml = function(){
   $('#portfolio').append($newItem);
 
 };
-//
-// function pageWrite(){
-//   dateSort();
-//   console.log(rawData);
-//   for (var i = rawData.length - 1 ; i >= 0; i--){
-//     var $article = $('<li class="item"></li>');
-//     $article.append('<div><a href="' + rawData[i].link + '">'+ rawData[i].name +'</a></div>');
-//     $article.append('<div>'+ rawData[i].date +'</div>');
-//     $article.append('<div>'+ rawData[i].text +'</div>');
-//     $article.append('<img src="' + rawData[i].image + '">');
-//     console.log($article);
-//     $('#portfolio').append($article);
-//   }
-// }
-//
-// pageWrite();
 
 function writeItem(){
   dateSort();
@@ -91,34 +70,22 @@ function loadData(){
       url: 'data/projects.json',
       type: 'HEAD',
       success: function(data, message, xhr){
-        console.log(xhr.getResponseHeader('ETag'));
         eTag = xhr.getResponseHeader('ETag');
-        console.log(eTag);
-        console.log(typeof eTag);
       }
     }).done(function(){
-      console.log('done');
       if (localStorage.eTag !== eTag){
-        console.log('inside if');
         localStorage.eTag = eTag;
-        console.log(localStorage.eTag);
-        console.log(typeof localStorage.eTag);
         $.getJSON('data/projects.json', function(data){
-          console.log('test', data);
           localStorage.setItem('projects', JSON.stringify(data));
           $.each(data, function(){
             rawData.push(this);
           });
-          console.log('rawData', rawData);
         });
       } else {
-        console.log('inside else');
         rawData = JSON.parse(localStorage.projects);
-        console.log('rawData', rawData);
       }
       writeItem();
     });
 };
-// loadData();
 
 //.error(function(e){console.log('error',e, e.responseText)})
