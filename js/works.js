@@ -1,11 +1,11 @@
 var rawData= [
-  {
-    name: 'RacTrac',
-    date: '2015-12-28',
-    image: 'img/ractrac.png',
-    text: 'RacTrac accepts a user\'s geolocation, then maps that location with nearby bike racks maintained by the City of Seattle.  The app calls a City of Seattle database, the user selects the distance to the farthest rack, and the app does the math and maps the appropriate bike racks.  RacTrac is deployed on a node server on heroku.com to preserve API key security.',
-    link: 'http://ractrac.herokuapp.com',
-  }
+  // {
+  //   name: 'RacTrac',
+  //   date: '2015-12-28',
+  //   image: 'img/ractrac.png',
+  //   text: 'RacTrac accepts a user\'s geolocation, then maps that location with nearby bike racks maintained by the City of Seattle.  The app calls a City of Seattle database, the user selects the distance to the farthest rack, and the app does the math and maps the appropriate bike racks.  RacTrac is deployed on a node server on heroku.com to preserve API key security.',
+  //   link: 'http://ractrac.herokuapp.com',
+  // }
 ];
 
 function dateSort(){
@@ -72,7 +72,8 @@ function writeItem(){
 };
 
 $('document').ready(function(){
-  writeItem();
+  loadData();
+  // writeItem();
   $('nav').on('click', function(e){
     var $name = ($(e.target).data('name'));
     if($(e.target).hasClass('tab')){
@@ -82,3 +83,42 @@ $('document').ready(function(){
   });
   $('nav .tab:first').click();
 });
+
+function loadData(){
+  var eTag;
+  $.ajax(
+    {
+      url: 'data/projects.json',
+      type: 'HEAD',
+      success: function(data, message, xhr){
+        console.log(xhr.getResponseHeader('ETag'));
+        eTag = xhr.getResponseHeader('ETag');
+        console.log(eTag);
+        console.log(typeof eTag);
+      }
+    }).done(function(){
+      console.log('done');
+      if (localStorage.eTag !== eTag){
+        console.log('inside if');
+        localStorage.eTag = eTag;
+        console.log(localStorage.eTag);
+        console.log(typeof localStorage.eTag);
+        $.getJSON('data/projects.json', function(data){
+          console.log('test', data);
+          localStorage.setItem('projects', JSON.stringify(data));
+          $.each(data, function(){
+            rawData.push(this);
+          });
+          console.log('rawData', rawData);
+        });
+      } else {
+        console.log('inside else');
+        rawData = JSON.parse(localStorage.projects);
+        console.log('rawData', rawData);
+      }
+      writeItem();
+    });
+};
+// loadData();
+
+//.error(function(e){console.log('error',e, e.responseText)})
