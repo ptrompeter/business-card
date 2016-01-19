@@ -82,8 +82,9 @@
     $('nav').on('click', function(e){
       var $name = ($(e.target).data('name'));
       if($(e.target).hasClass('tab')){
-        $('.tab-content').hide();
-        $('#'+ $name).fadeIn();
+        // $('.tab-content').hide();
+        $('.tab-content').fadeIn();
+        // $('#'+ $name).fadeIn();
       }
     });
     // $('nav .tab:first').click();
