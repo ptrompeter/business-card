@@ -83,10 +83,20 @@
       var $name = ($(e.target).data('name'));
       if($(e.target).hasClass('tab')){
         // $('.tab-content').hide();
-        $('.tab-content').fadeIn();
+        // $('.tab-content').fadeIn();
         // $('#'+ $name).fadeIn();
       }
     });
+    // $('#repolist').on('load', function(e){
+
+    var url = window.location.href;
+
+    if (url.indexOf('about') > -1) {
+    //  console.log('sjbadkajb',repos.callGit(repos.index()))
+      repos.callGit();
+    }
+
+    // });
     // $('nav .tab:first').click();
   });
 
