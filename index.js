@@ -6,9 +6,8 @@ var app = express();
 var request = require('request');
 var layouts = require('express-ejs-layouts');
 
-var DATA_KEY = process.env.DATA_KEY;
-var NODE_ENV = process.env.NODE_ENV || 'development';
-var BASE_URL = (NODE_ENV === 'production') ? 'https://patricktrompeter.herokuapp.com' : 'http://localhost:3000';
+// var NODE_ENV = process.env.NODE_ENV || 'development';
+// var BASE_URL = (NODE_ENV === 'production') ? 'https://patricktrompeter.herokuapp.com' : 'http://localhost:3000';
 
 var proxyGitHub = function(request, response) {
   console.log('Routing GitHub request for', request.params[0]);
@@ -17,6 +16,7 @@ var proxyGitHub = function(request, response) {
     headers: { Authorization: 'token ' + process.env.GITHUB_TOKEN }
   }))(request, response);
 };
+// console.log('githubkeytest',process.env.GITHUB_TOKEN);
 
 app.get('/github/*', proxyGitHub);
 

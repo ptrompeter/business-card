@@ -1,0 +1,32 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "An online business card website for Patrick Trompeter",
+  "main": "index.js",
+  "dependencies": {
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "express-ejs-layouts": "^2.0.0",
+    "express-request-proxy": "^1.0.11",
+    "request": "^2.67.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ptrompeter/portfolio.git"
+  },
+  "keywords": [
+    "301",
+    "portfolio",
+    "website"
+  ],
+  "author": "Patrick Trompeter",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ptrompeter/portfolio/issues"
+  },
+  "homepage": "https://github.com/ptrompeter/portfolio#readme"
+}
